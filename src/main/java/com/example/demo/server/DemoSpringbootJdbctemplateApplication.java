@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootApplication
 public class DemoSpringbootJdbctemplateApplication implements CommandLineRunner {
@@ -24,6 +25,7 @@ public class DemoSpringbootJdbctemplateApplication implements CommandLineRunner 
 		SpringApplication.run(DemoSpringbootJdbctemplateApplication.class, args);
 	}
 
+	@Transactional
 	@Override
 	public void run(String... strings) throws Exception {
 		logger.info("Creating tables");
