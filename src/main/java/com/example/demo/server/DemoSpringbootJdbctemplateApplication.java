@@ -21,6 +21,9 @@ public class DemoSpringbootJdbctemplateApplication implements CommandLineRunner 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	private CustomerRepository customerRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(DemoSpringbootJdbctemplateApplication.class, args);
 	}
@@ -30,8 +33,8 @@ public class DemoSpringbootJdbctemplateApplication implements CommandLineRunner 
 	public void run(String... strings) throws Exception {
 		logger.info("Creating tables");
 
-		jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
-		jdbcTemplate.execute("CREATE TABLE customers("
+		jdbcTemplate.execute("DROP TABLE CUSTOMERS IF EXISTS");
+		jdbcTemplate.execute("CREATE TABLE CUSTOMERS("
 				+ "id INTEGER IDENTITY PRIMARY KEY, first_name VARCHAR(255), last_name VARCHAR(255))");
 
 		// Split up the array of whole names into an array of first/last names
@@ -53,5 +56,9 @@ public class DemoSpringbootJdbctemplateApplication implements CommandLineRunner 
 		// Amount of customers
 		int amountCustomers = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM customers", Integer.class);
 		logger.info("Amount of customers: " + amountCustomers);
+
+		// Amount of customers with Spring Data JDBC
+		long count = customerRepository.count();
+		logger.info("Amount of customers: " + count);
 	}
 }

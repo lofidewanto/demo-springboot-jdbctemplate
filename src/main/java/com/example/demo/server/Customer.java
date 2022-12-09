@@ -1,5 +1,8 @@
 package com.example.demo.server;
 
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table("CUSTOMERS")
 public class Customer {
 
 	private long id;
