@@ -60,5 +60,7 @@ public class DemoSpringbootJdbctemplateApplication implements CommandLineRunner 
 		// Amount of customers with Spring Data JDBC
 		long count = customerRepository.count();
 		logger.info("Amount of customers: " + count);
+
+		customerRepository.findByName("Josh").forEach(customer -> logger.info(customer.toString()));
 	}
 }
